@@ -25,20 +25,17 @@ function setMap() {
 }
 
 function createMapboxLayer(geojson) {
-      console.log(geojson);
-
       var layer =  {
             'id': 'utesteder',
-            'type': 'symbol',
+            'type': 'circle',
             'source': {
                   'type': 'geojson',
                   'data': geojson
             },
             'layout': {
-                  "icon-image": "{icon}-15",
-                  "icon-allow-overlap": true
             }
       }
+      return layer;
 };
 
 window.onload = setMap;
