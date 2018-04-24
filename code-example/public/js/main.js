@@ -18,6 +18,10 @@ function setMap() {
 
       //Adding geoJSON layer to the map:
       //L.geoJSON(restaurants).addTo(map);
+
+      map.onLoad('load', function(){
+            map.addLayer(osloUtesteder);
+      });
 }
 
 window.onload = setMap;
