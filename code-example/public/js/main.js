@@ -20,7 +20,8 @@ function setMap() {
       //L.geoJSON(restaurants).addTo(map);
 
       map.on('load', function(){
-            map.addLayer(createMapboxLayer(osloUtesteder));
+            map.addLayer(createMapboxLayer("utesteder", "circle", osloUtesteder));
+            map.addLayer(createMapboxLayer("parker", "fill", parker));
       });
       map.on('click', 'utesteder', function (e) {
             var coordinates = e.features[0].geometry.coordinates.slice();
@@ -41,10 +42,10 @@ function setMap() {
     
 }
 
-function createMapboxLayer(geojson) {
+function createMapboxLayer(name, type, geojson) {
       var layer =  {
-            'id': 'utesteder',
-            'type': 'circle',
+            'id': name,
+            'type': type,
             'source': {
                   'type': 'geojson',
                   'data': geojson
