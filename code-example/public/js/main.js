@@ -19,9 +19,26 @@ function setMap() {
       //Adding geoJSON layer to the map:
       //L.geoJSON(restaurants).addTo(map);
 
-      map.onLoad('load', function(){
-            map.addLayer(osloUtesteder);
+      map.on('load', function(){
+            map.addLayer(createMapboxLayer(osloUtesteder));
       });
 }
+
+function createMapboxLayer(geojson) {
+      console.log(geojson);
+
+      var layer =  {
+            'id': 'utesteder',
+            'type': 'symbol',
+            'source': {
+                  'type': 'geojson',
+                  'data': geojson
+            },
+            'layout': {
+                  "icon-image": "{icon}-15",
+                  "icon-allow-overlap": true
+            }
+      }
+};
 
 window.onload = setMap;

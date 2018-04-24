@@ -2859,4 +2859,4 @@ var osloUtesteder ={
       "id": "node/5246098664"
     }
   ]
-}
+};
