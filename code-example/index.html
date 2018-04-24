@@ -4,29 +4,30 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="format-detection" content="telephone=no">
-        <title>kode-eksempel</title>
+        <title>DEMO</title>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-        <link rel="stylesheet" href="style.css" />
+
+        <!-- Dependencies -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+
+        <script src="restaurants_stavanger.js"></script>
+
+        <link rel="stylesheet" href="public/css/main.css" />
     </head>
     <body>
-        <h1>Hva er det beste universitetet i Norge?</h1>
-        <button id='bestStudy-btn' onclick="showImage('1'); hideButton('bestStudy-btn')"> 
-            Se svar 
-        </button>
-        <img id="1" class="hide code-img" src = "./img/1.png"></img>
 
-        <h1>Hva er den beste bruken av tid?</h1>
-        <button id="bestSpes-btn" onmouseover="showImage('2'); hideButton('bestSpes-btn')"> 
-            Se svar 
-        </button>
-        <img id="2" class="hide code-img" src = "./img/2.gif"></img>
+        <!-- INSERT/CHANGE CODE HERE: -->
+<!-- -------------------------------------------------------------------------------- -->
 
-        <h1>Hvor skal DU søke sommer- eller deltidsjobb?</h1>
-        <button id="bestWork-btn" ondblclick="showImage('3'); hideButton('bestWork-btn')"> 
-            Se svar 
-        </button>
-        <img id="3" class="hide code-img" src = "./img/3.png"></img>
+        <div id="content">
+            <h1>EKSEMPEL</h1>
 
-        <script type="text/javascript" src="logic.js"></script>
+            <div id="map">
+            </div>
+        </div>
+<!-- -------------------------------------------------------------------------------- -->
+
+        <script src="public/js/main.js"></script>
     </body>
 </html>
