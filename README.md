@@ -14,8 +14,12 @@ Lag en nettside som på best mulig måte viser dine topp tre restauranter i Stav
 ## Kjøre koden
 Last ned koden ved å trykke "Clone or Download". Deretter last ned zip, eller clone hvis du har git installert. Når koden er lastet ned kan du gå inn i mappen som heter `task-boilerplate` og åpne `index.html` i nettleseren, og du er i gang!
 
-## Tutorial med eksempler på hva man kan gjøre <a name="tutorial"> </a>
-http://leafletjs.com/examples/geojson/
+## Mapbox API og eksempler <a name="tutorial"> </a>
+[Mapbox GL JS api](https://www.mapbox.com/mapbox-gl-js/api)
+[Eksempeler](https://www.mapbox.com/mapbox-gl-js/example/simple-map/)
+
+## Bibliotek for å gjøre analyser:
+[Turf](http://turfjs.org/)
 
 ## Bakgrunnskart
 

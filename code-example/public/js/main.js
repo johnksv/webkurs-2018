@@ -1,7 +1,6 @@
 
 //Initializing the map
 function setMap() {
-
       console.log('Loading map');
 
       mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aGlsZG8iLCJhIjoiY2lrdHZvMHdsMDAxMHdvbTR0MWZkY3FtaCJ9.u4bFYLBtEGNv4Qaa8Uaqzw';
@@ -26,15 +25,14 @@ function setMap() {
             // copies of the feature are visible, the popup appears
             // over the copy being pointed to.
             while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
             }
-    
+
             new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-        });
-    
+                  .setLngLat(coordinates)
+                  .setHTML(description)
+                  .addTo(map);
+      });
 }
 
 function createMapboxLayer(geojson) {
@@ -45,8 +43,15 @@ function createMapboxLayer(geojson) {
                   'type': 'geojson',
                   'data': geojson
             },
-            'layout': {
-                  
+            'paint': {
+                  'circle-radius': 10,
+                  'circle-color': 'red',
+                  'circle-opacity':{
+                        'stops': [
+                              [7, 1],
+                              [17, 0.2]
+                        ]
+                  }
             }
       }
       return layer;
