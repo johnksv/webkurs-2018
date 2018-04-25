@@ -20,8 +20,12 @@ Bakgrunnskart definerer stilen på kartet, og kan enkelt byttes i koden i `publi
 
 ```javascript
 
-    var basemapUrl='http://{s}.tile.osm.org/{z}/{x}/{y}.png';
-    L.tileLayer(basemapUrl).addTo(map);
+    var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+            center: [10.74812, 59.92145], // starting position [lng, lat]
+            zoom: 14 // starting zoom. Zoomlevel is from 0 -> 22, where 22 is zoomed in an 0 is zoomed out
+      });
 
 ```
 Mapbox har noen ferdige eksempler på bakgrunnskart dere kan bruke. Det eneste dere trenger å gjøre er å endre `style`.
