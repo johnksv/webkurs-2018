@@ -11,39 +11,20 @@ function setMap() {
       });
 
       map.addControl(new mapboxgl.NavigationControl());
-
-      //Adding geoJSON layer to the map:
-      /*
+      
       var paint = {
-            'circle-radius': 10,
+            'circle-radius': 8,
             'circle-color': 'red',
-            'circle-opacity':{
-                  'stops': [
-                        [7, 1],
-                        [17, 0.2]
-                  ]
-            }};
-
+            'circle-opacity': 0.5
+      };
       map.on('load', function(){
-            map.addLayer(createMapboxLayer("utesteder", "circle", osloUtesteder, paint));
-            
+            map.addLayer(createMapboxLayer('utesteder', 'circle', osloUtesteder, paint));
       });
-      map.on('click', 'utesteder', function (e) {
-            var coordinates = e.features[0].geometry.coordinates.slice();
-            var description = e.features[0].properties.name;
-            
-            // Ensure that if the map is zoomed out such that multiple
-            // copies of the feature are visible, the popup appears
-            // over the copy being pointed to.
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                  coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
-
-            new mapboxgl.Popup()
-                  .setLngLat(coordinates)
-                  .setHTML(description)
-                  .addTo(map);
-      }); */
+      map.on("click", "utesteder", function (event) {
+            var content = event.features[0].properties.name;
+            var coordinates = event.features[0].geometry.coordinates.slice();
+            new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
+      });
 }
 
 function createMapboxLayer(id, type, geojson, paint = false) {
