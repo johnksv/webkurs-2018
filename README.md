@@ -9,13 +9,14 @@
 - [Tutorial](#tutorial)
 
 ## Oppgave
-Lag en nettside som på best mulig måte viser dine topp tre restauranter i Stavanger. Ta utganspunkt i koden som ligger i mappen [task-boilerplate](./task-boilerplate).
+Lag en nettside som på best mulig måte viser dine topp utesteder for oslo-sommer. Ta utganspunkt i koden som ligger i mappen [task-boilerplate](./task-boilerplate).
 
 ## Kjøre koden
 Last ned koden ved å trykke "Clone or Download". Deretter last ned zip, eller clone hvis du har git installert. Når koden er lastet ned kan du gå inn i mappen som heter `task-boilerplate` og åpne `index.html` i nettleseren, og du er i gang!
 
 ## Mapbox API og eksempler <a name="tutorial"> </a>
 [Mapbox GL JS api](https://www.mapbox.com/mapbox-gl-js/api)
+
 [Eksempeler](https://www.mapbox.com/mapbox-gl-js/example/simple-map/)
 
 ## Bibliotek for å gjøre analyser:
