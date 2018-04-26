@@ -17,7 +17,15 @@ function setMap() {
             'circle-color': 'red',
             'circle-opacity': 0.5
       };
+
+      var paint2 = {
+            "fill-color": "red"
+      };
+
       map.on('load', function(){
+
+            map.addLayer(createMapboxLayer('parker', 'fill', parker, paint2));
+
             map.addLayer(createMapboxLayer('utesteder', 'circle', osloUtesteder, paint));
       });
       map.on("click", "utesteder", function (event) {
@@ -25,6 +33,17 @@ function setMap() {
             var coordinates = event.features[0].geometry.coordinates.slice();
             new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
       });
+
+      map.on("click", "parker", function (event) {
+          var content = event.features[0].properties.name;
+          var coordinates = event.lngLat;
+          var pol = event.features[0].geometry.coordinates;
+          var polygon = turf.polygon(pol);
+
+          var area = Math.round(turf.area(polygon));
+          new mapboxgl.Popup().setLngLat(coordinates).setHTML("Areal er : " + area + " kvm").addTo(map);
+      })
+
 }
 
 function createMapboxLayer(id, type, geojson, paint = false) {
