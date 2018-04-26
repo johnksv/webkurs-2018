@@ -17,7 +17,11 @@ function setMap() {
             'circle-color': 'red',
             'circle-opacity': 0.5
       };
-      
+      var paint_red = {
+            "fill-color": "red",
+          'fill-opacity': 0.25
+      };
+
       map.on('load', function(){
             map.addLayer(createMapboxLayer('parker', 'fill', parker, {'fill-opacity': 0.25}));
 
@@ -42,6 +46,7 @@ function setMap() {
                     };
                   map.addLayer(createMapboxLayer('fastfood', 'symbol', fastfood, false, layout));
             });
+
       });
 
       map.on("click", "utesteder", function (event) {
@@ -50,11 +55,24 @@ function setMap() {
             new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
       });
 
+
       map.on("click", "fastfood", function (event) {
             var content = event.features[0].properties.name;
             var coordinates = event.features[0].geometry.coordinates.slice();
             new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
       });
+
+      map.on("click", "parker", function (event) {
+          var content = event.features[0].properties.name;
+          var coordinates = event.lngLat;
+          var pol = event.features[0].geometry.coordinates;
+          var polygon = turf.polygon(pol);
+
+          var area = Math.round(turf.area(polygon));
+          new mapboxgl.Popup().setLngLat(coordinates).setHTML("Areal er : " + area + " kvm").addTo(map);
+      })
+
+
 }
 
 function createMapboxLayer(id, type, geojson, paint = false, layout = false) {
