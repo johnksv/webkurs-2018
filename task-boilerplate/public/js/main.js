@@ -17,16 +17,16 @@ function setMap() {
             'circle-color': 'red',
             'circle-opacity': 0.5
       };
-
-      var paint2 = {
-            "fill-color": "red"
+      var paint_red = {
+            "fill-color": "red",
+          'fill-opacity': 0.25
       };
 
       map.on('load', function(){
 
-            map.addLayer(createMapboxLayer('parker', 'fill', parker, paint2));
-
+            map.addLayer(createMapboxLayer('parker', 'fill', parker, paint_red));
             map.addLayer(createMapboxLayer('utesteder', 'circle', osloUtesteder, paint));
+            map.addLayer(createMapboxLayer('fastfood', 'circle', fastfood));
       });
       map.on("click", "utesteder", function (event) {
             var content = event.features[0].properties.name;
