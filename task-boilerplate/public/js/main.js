@@ -17,8 +17,11 @@ function setMap() {
             'circle-color': 'red',
             'circle-opacity': 0.5
       };
+      
       map.on('load', function(){
             map.addLayer(createMapboxLayer('utesteder', 'circle', osloUtesteder, paint));
+            map.addLayer(createMapboxLayer('parker', 'fill', parker, {'fill-opacity': 0.25}));
+            map.addLayer(createMapboxLayer('fastfood', 'circle', fastfood));
       });
       map.on("click", "utesteder", function (event) {
             var content = event.features[0].properties.name;
