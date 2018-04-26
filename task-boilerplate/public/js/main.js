@@ -24,12 +24,40 @@ function setMap() {
       };
 
       map.on('load', function(){
+            map.addLayer(createMapboxLayer('parker', 'fill', parker, {'fill-opacity': 0.25}));
 
-            map.addLayer(createMapboxLayer('parker', 'fill', parker, paint_red));
-            map.addLayer(createMapboxLayer('utesteder', 'circle', osloUtesteder, paint));
-            map.addLayer(createMapboxLayer('fastfood', 'circle', fastfood));
+            map.loadImage("img/beer.png", (error, image) => {
+                  if (error) throw error;
+                  map.addImage('beer', image);
+                  const layout = {
+                        "icon-image": "beer",
+                        "icon-size": 0.075,
+                        "icon-allow-overlap": true
+                    };
+                  map.addLayer(createMapboxLayer('utesteder', 'symbol', osloUtesteder, false, layout));
+            });
+
+            map.loadImage("img/fastfood.png", (error, image) => {
+                  if (error) throw error;
+                  map.addImage('fastfood', image);
+                  const layout = {
+                        "icon-image": "fastfood",
+                        "icon-size": 0.08,
+                        "icon-allow-overlap": true
+                    };
+                  map.addLayer(createMapboxLayer('fastfood', 'symbol', fastfood, false, layout));
+            });
+
       });
+
       map.on("click", "utesteder", function (event) {
+            var content = event.features[0].properties.name;
+            var coordinates = event.features[0].geometry.coordinates.slice();
+            new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
+      });
+
+
+      map.on("click", "fastfood", function (event) {
             var content = event.features[0].properties.name;
             var coordinates = event.features[0].geometry.coordinates.slice();
             new mapboxgl.Popup().setLngLat(coordinates).setHTML(content).addTo(map);
@@ -62,7 +90,7 @@ function setMap() {
 
 }
 
-function createMapboxLayer(id, type, geojson, paint = false) {
+function createMapboxLayer(id, type, geojson, paint = false, layout = false) {
       var layer =  {
             'id': id,
             'type': type,
@@ -70,8 +98,9 @@ function createMapboxLayer(id, type, geojson, paint = false) {
                   'type': 'geojson',
                   'data': geojson
             },
-            'paint': (paint) ? paint : {}
-            }
+            'paint': (paint) ? paint : {},
+            'layout': (layout) ? layout : {},
+      }
       
       return layer;
 };
