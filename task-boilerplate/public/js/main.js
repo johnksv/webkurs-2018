@@ -1,4 +1,5 @@
 
+
 //Initializing the map
 function setMap() {
       console.log('Loading map');
@@ -35,14 +36,29 @@ function setMap() {
       });
 
       map.on("click", "parker", function (event) {
-          var content = event.features[0].properties.name;
           var coordinates = event.lngLat;
           var pol = event.features[0].geometry.coordinates;
           var polygon = turf.polygon(pol);
 
           var area = Math.round(turf.area(polygon));
           new mapboxgl.Popup().setLngLat(coordinates).setHTML("Areal er : " + area + " kvm").addTo(map);
+
+          var targetPoint = turf.point(event.lngLat.toArray(), {"marker-color": "#0F0"});
+
+
+
+          var list = [];
+          for (let i = 0; i < osloUtesteder.features.length; i++) {
+              list.push(turf.point(osloUtesteder.features[i].geometry.coordinates));
+          }
+
+          var points = turf.featureCollection(list)
+
+          var nearest = turf.nearestPoint(targetPoint, points);
+
+          new mapboxgl.Popup().setLngLat(nearest.geometry.coordinates).setHTML("denne er nærmest").addTo(map);
       })
+
 
 }
 
